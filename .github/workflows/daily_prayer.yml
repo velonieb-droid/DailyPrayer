@@ -1,8 +1,7 @@
 name: Daily Bible Prayer
 
-# Trigger: manual + schedule
 on:
-  workflow_dispatch:       # Enables "Run workflow" button
+  workflow_dispatch:
   schedule:
     - cron: "22 21 * * *" # 6AM PH
     - cron: "12 12 * * *" # 8PM PH
@@ -12,31 +11,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repository
       - uses: actions/checkout@v4
 
-      # 2️⃣ Set up Python
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      # 3️⃣ Install dependencies
       - name: Install Python packages
         run: pip install pillow requests
 
-      # 4️⃣ Run your daily prayer script
       - name: Run daily prayer
         run: python daily_prayer.py
         env:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
-
-      # 5️⃣ Commit updated prayer_history.txt using PAT
-      - name: Commit prayer history
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add prayer_history.txt || true
-          git commit -m "Update prayer history" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/${{ github.repository }} HEAD:main
