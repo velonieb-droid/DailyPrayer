@@ -1,0 +1,22 @@
+name: Daily Bible Prayer
+
+on:
+  schedule:
+    - cron: "22 21 * * *" # 6AM PH
+    - cron: "12 12 * * *" # 8PM PH
+  workflow_dispatch:
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pillow requests
+      - run: python daily_prayer.py
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
