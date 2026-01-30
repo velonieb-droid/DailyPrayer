@@ -20,3 +20,11 @@ jobs:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+ # --- Step: Commit prayer_history.txt ---
+      - name: Commit prayer history
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add prayer_history.txt || true
+          git commit -m "Update prayer history" || echo "No changes to commit"
+          git push
