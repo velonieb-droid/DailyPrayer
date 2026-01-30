@@ -1,8 +1,8 @@
 name: Daily Bible Prayer
 
-# Trigger: manual run + schedule
+# Trigger: manual + schedule
 on:
-  workflow_dispatch:       # enables "Run workflow" button
+  workflow_dispatch:       # Enables "Run workflow" button
   schedule:
     - cron: "22 21 * * *" # 6AM PH
     - cron: "12 12 * * *" # 8PM PH
@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout the repository
+      # 1️⃣ Checkout repository
       - uses: actions/checkout@v4
 
       # 2️⃣ Set up Python
@@ -32,7 +32,7 @@ jobs:
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
 
-      # 5️⃣ Commit updated prayer history
+      # 5️⃣ Commit updated prayer_history.txt using PAT
       - name: Commit prayer history
         run: |
           git config user.name "github-actions"
