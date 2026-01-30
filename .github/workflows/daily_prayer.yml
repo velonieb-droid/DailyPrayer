@@ -33,11 +33,12 @@ jobs:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
 
       # 5️⃣ Commit updated prayer history
-     - name: Commit prayer history
+    - name: Commit prayer history
   run: |
     git config user.name "github-actions"
     git config user.email "github-actions@github.com"
     git add prayer_history.txt || true
     git commit -m "Update prayer history" || echo "No changes to commit"
     git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/${{ github.repository }} HEAD:main
+
 
