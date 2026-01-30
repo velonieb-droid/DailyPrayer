@@ -1,1 +1,22 @@
+{
+  "morning": [
+    {
+      "text": "Ito ang araw na ginawa ng Panginoon.",
+      "reference": "Awit 118:24",
+      "theme": "guidance"
+    },
+    {
+      "text": "Ang Panginoon ang aking ilaw at kaligtasan.",
+      "reference": "Awit 27:1",
+      "theme": "guidance"
+    }
+  ],
+  "evening": [
+    {
+      "text": "Ang kapayapaan ng Diyos ang mag-iingat sa inyong puso.",
+      "reference": "Filipos 4:7",
+      "theme": "peace"
+    }
+  ]
+}
 
